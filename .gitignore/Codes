@@ -1,0 +1,32 @@
+ string NumberDecimalSeparator= CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+
+        public double DoubleConverter(string gelen)
+        {
+            gelen = gelen.Trim();
+
+            if (gelen.Contains("-"))
+            {
+                gelen = gelen.Replace("-", "");
+
+                gelen ="-"+Regex.Replace(gelen, @"(\p{P})", NumberDecimalSeparator);
+
+            }
+            else
+            {
+                gelen =Regex.Replace(gelen, @"(\p{P})", NumberDecimalSeparator);
+
+            }
+           
+
+            //if (gelen.Contains(".") && CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator!=".")
+            //{
+            //    gelen= gelen.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+            //}
+            //else if (gelen.Contains(",") && CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator != ",")
+            //{
+            //    gelen = gelen.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+
+            //}
+            return Convert.ToDouble(gelen);
+
+        }
